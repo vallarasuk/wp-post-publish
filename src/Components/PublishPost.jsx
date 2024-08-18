@@ -22,8 +22,7 @@ const PublishPost = () => {
         },
         {
           headers: {
-            Authorization: `Basic dmFsbGFyYXN1X0s6SEBzYW5pMTQzQA==`,
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.REACT_APP_JWT_TOKEN}`,
           },
         }
       );
@@ -31,6 +30,7 @@ const PublishPost = () => {
       setMessage("Post published successfully!");
       setIsSuccess(true);
     } catch (error) {
+      console.log("Error Details:", error.response ? error.response.data : error.message);
       setMessage("Error publishing post. Please try again.");
       setIsSuccess(false);
     }
