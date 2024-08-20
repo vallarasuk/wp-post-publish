@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Form, Button, Container, Alert } from "react-bootstrap";
 
 const PublishPost = () => {
   const [title, setTitle] = useState("");
@@ -30,15 +29,18 @@ const PublishPost = () => {
       setMessage("Post published successfully!");
       setIsSuccess(true);
     } catch (error) {
-      console.log("Error Details:", error.response ? error.response.data : error.message);
+      console.log(
+        "Error:",
+        error.response ? error.response.data : error.message
+      );
       setMessage("Error publishing post. Please try again.");
       setIsSuccess(false);
     }
   };
 
   return (
-    <Container className="my-5">
-      <h2 className="mb-4">Publish a New Post</h2>
+    <Container>
+      <h2>Publish a New Post</h2>
       {message && (
         <Alert variant={isSuccess ? "success" : "danger"}>{message}</Alert>
       )}
@@ -64,9 +66,7 @@ const PublishPost = () => {
             required
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Publish Post
-        </Button>
+        <Button type="submit">Publish</Button>
       </Form>
     </Container>
   );
